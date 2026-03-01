@@ -2,16 +2,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="paralleltesting" parallel="classes">
 
-  <test thread-count="5" name="Test1">
-  <parameter name="browser" value="chrome"></parameter>
-    <classes>
-      <class name="testscripts.HomeTest"/>
-    </classes>
-    </test>
-    <test thread-count="5" name="Text2">
-  <parameter name="browser" value="chrome"></parameter>
-    <classes>
-      <class name="testscripts.ManageNewsTest"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+	<test thread-count="5" name="Test1">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="testscripts.HomeTest" />
+		</classes>
+	</test>
+	<test thread-count="5" name="Text2">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="testscripts.ManageNewsTest" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

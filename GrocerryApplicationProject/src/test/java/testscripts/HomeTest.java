@@ -11,25 +11,25 @@ import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
-public class HomeTest extends TestNGBase{
+public class HomeTest extends TestNGBase {
 	HomePage home;
+
 	@Test(retryAnalyzer = retry.RetryMechanism.class)
-	public void verifyWhetherUserisAbletoLogoutSuccessfully() throws IOException
-	{
-		String usernamevalue = ExcelUtility.getStringData(0, 0,"LoginPage");
-		String passwordvalue = ExcelUtility.getStringData(0, 1,"LoginPage");
-		
+	public void verifyWhetherUserisAbletoLogoutSuccessfully() throws IOException {
+		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
+
 		LoginPage login = new LoginPage(driver);
 		login.enterUsernameOnUsernameField(usernamevalue).enterPasswordOnPasswordField(passwordvalue);
 		home = login.clickOnSignInButton();
-		
-		//HomePage home = new HomePage(driver);
+
+		// HomePage home = new HomePage(driver);
 		home.clickOnAdminLogoutButton();
-		login=home.clicOnLogoutButton();
-		
+		login = home.clicOnLogoutButton();
+
 		String expected = "7rmart supermarket";
 		String actual = login.dashboardText();
-		Assert.assertEquals(expected, actual,Constants.LOGOUTERROR);
+		Assert.assertEquals(expected, actual, Constants.LOGOUTERROR);
 	}
 
 }

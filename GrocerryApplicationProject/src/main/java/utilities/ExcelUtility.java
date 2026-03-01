@@ -11,42 +11,41 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import constants.Constants;
 
 public class ExcelUtility {
-	
+
 	static FileInputStream f;
 	static XSSFWorkbook w;
 	static XSSFSheet s;
-		
-		public static String getStringData(int a,int b, String sheet) throws IOException
-		{
-			f = new FileInputStream(Constants.TESTDATAFILE);
-			w = new XSSFWorkbook(f);
-			s = w.getSheet(sheet);
-			
-			XSSFRow r=s.getRow(a);
-			XSSFCell c=r.getCell(b);
-			return c.getStringCellValue();
-		}
-		public static String getIntegerData(int a,int b, String sheet) throws IOException
-		{	
-			f = new FileInputStream(Constants.TESTDATAFILE);
-			w = new XSSFWorkbook(f);
-			s = w.getSheet(sheet);
-			
-			XSSFRow r=s.getRow(a);
-			XSSFCell c=r.getCell(b);
-			//Typecasting
-			int j=  (int) c. getNumericCellValue();
-			return String.valueOf(j);
+
+	public static String getStringData(int a, int b, String sheet) throws IOException {
+		f = new FileInputStream(Constants.TESTDATAFILE);
+		w = new XSSFWorkbook(f);
+		s = w.getSheet(sheet);
+
+		XSSFRow r = s.getRow(a);
+		XSSFCell c = r.getCell(b);
+		return c.getStringCellValue();
 	}
-public static String getFloatData(int a,int b, String sheet)throws IOException
-{
-	f = new FileInputStream(Constants.TESTDATAFILE);
-	w = new XSSFWorkbook(f);
-	s = w.getSheet(sheet);
-	
-	XSSFRow r=s.getRow(a);
-	XSSFCell c=r.getCell(b);
-	float j=(float)c.getNumericCellValue();
-	return String.valueOf(j);
-}
+
+	public static String getIntegerData(int a, int b, String sheet) throws IOException {
+		f = new FileInputStream(Constants.TESTDATAFILE);
+		w = new XSSFWorkbook(f);
+		s = w.getSheet(sheet);
+
+		XSSFRow r = s.getRow(a);
+		XSSFCell c = r.getCell(b);
+		// Typecasting
+		int j = (int) c.getNumericCellValue();
+		return String.valueOf(j);
+	}
+
+	public static String getFloatData(int a, int b, String sheet) throws IOException {
+		f = new FileInputStream(Constants.TESTDATAFILE);
+		w = new XSSFWorkbook(f);
+		s = w.getSheet(sheet);
+
+		XSSFRow r = s.getRow(a);
+		XSSFCell c = r.getCell(b);
+		float j = (float) c.getNumericCellValue();
+		return String.valueOf(j);
+	}
 }

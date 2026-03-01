@@ -18,45 +18,43 @@ import constants.Constants;
 import utilities.ScreenshotUtility;
 
 public class TestNGBase {
-	
+
 	Properties prop;
 	FileInputStream fs;
-	
-	public  WebDriver driver;
-	@BeforeMethod(alwaysRun=true)
+
+	public WebDriver driver;
+
+	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void browserInitialization(String browser) throws Exception
-	{
+	public void browserInitialization(String browser) throws Exception {
 		prop = new Properties();
 		fs = new FileInputStream(Constants.CONFIGFILE);
 		prop.load(fs);
-		
-		if(browser.equalsIgnoreCase("chrome")) {
-			driver= new ChromeDriver();
-		}
-		else if(browser.equalsIgnoreCase("firefox")) {
-			driver= new FirefoxDriver();
-		}
-		else if(browser.equalsIgnoreCase("edge")) {
+
+		if (browser.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browser.equalsIgnoreCase("firefox")) {
+			driver = new FirefoxDriver();
+		} else if (browser.equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();
-		}
-		else {
+		} else {
 			throw new Exception("invalid browser");
 		}
 		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-	
+
 	}
-	@AfterMethod(alwaysRun=true)
-	public void driverQuit(ITestResult iTestResult) throws IOException { 
-		  
- 		if (iTestResult.getStatus() == ITestResult.FAILURE) { 
-  
- 			ScreenshotUtility screenShot = new ScreenshotUtility(); 
- 			screenShot.getScreenshot(driver, iTestResult.getName()); 
- 		} 
- 		//driver.quit(); 
-  
- 	}
+
+	@AfterMethod(alwaysRun = true)
+	public void driverQuit(ITestResult iTestResult) throws IOException {
+
+		if (iTestResult.getStatus() == ITestResult.FAILURE) {
+
+			ScreenshotUtility screenShot = new ScreenshotUtility();
+			screenShot.getScreenshot(driver, iTestResult.getName());
+		}
+		// driver.quit();
+
+	}
 }
